@@ -1,0 +1,85 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "main.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.py",
+            "args": [
+                "--num-sample", "1",
+                "--prompt-type", "python_stack_plus",
+                "--query-file", "./data/jailbreakbench.csv",
+                "--target-model", "gpt-4o-mini",
+                // "--target-model", "meta-llama/Llama-3.1-8B-Instruct",
+                "--judge-model", "gpt-4o-mini",
+                "--exp-name", "main",
+                "--target-max-n-tokens", "1000",
+                "--multi-thread",
+                "--temperature", "0",
+                "--start-idx", "0",
+                "--end-idx", "50"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "main-API.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main-API.py",
+            "args": [
+                "--num-sample", "1",
+                "--prompt-type", "python_stack_plus",
+                "--query-file", "./data/jailbreakbench.csv",
+                "--target-model", "gpt-4o-mini",
+                "--judge-model", "gpt-4o-mini",
+                "--exp-name", "main",
+                "--target-max-n-tokens", "1000",
+                "--temperature", "0",
+                "--start-idx", "0",
+                "--end-idx", "50"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "main_back.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/main_back.py",
+            "args": [
+                "--num-sample", "1",
+                "--prompt-type", "python_stack_plus",
+                "--query-file", "./data/harmful_behaviors.csv",
+                "--target-model", "gpt-4o-mini",
+                "--judge-model", "gpt-4o-mini",
+                "--exp-name", "main",
+                "--target-max-n-tokens", "1000",
+                // "--multi-thread",
+                "--temperature", "0",
+                "--start-idx", "0",
+                "--end-idx", "1"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0"
+            },
+            "console": "integratedTerminal"
+        }
+    ]
+}

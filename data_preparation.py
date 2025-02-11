@@ -8,9 +8,16 @@ class DataPreparer:
         self.query_file = query_file
         self.prompt_name = prompt_name
         self.prompt_type = prompt_type
-        self._prompt = prompt_name
+        self._prompt = self.load(prompt_name)
         self.query_name = query_file.split('/')[-1].split('.')[0]
 
+
+    def load(self, prompt_name):
+        filename = f"./prompt_templates/{prompt_name}"
+        with open(filename, 'r') as file:
+            prompt = file.read()
+        return prompt
+    
     @property
     def prompt(self):
         """The prompt property, loaded from a file template."""
@@ -76,7 +83,7 @@ class DataPreparer:
         if "python" in self.prompt_name:
             # If the template is python, use python built-in format method to
             # inject the input replacing the placeholders
-            prompt = self.prompt.format(wrapped_input=wrapped_input)
+            prompt = self._prompt.format(wrapped_input=wrapped_input)
         else:
             # If the template is in a language other than python, use the
             # replace function from this class
@@ -89,7 +96,7 @@ class DataPreparer:
     def infer(self):
         # TODO: If the prompt file already exists, avoid generating it again
         df = pd.read_csv(self.query_file)
-        malicious_goals = df['goal'].tolist()
+        malicious_goals = df['Goal'].tolist()
         # TODO: if it's not important to keep track of the index, then we can
         # avoid pre-generating this list of empty dict and we can just append
         # the results in the for loop
