@@ -229,7 +229,6 @@ if __name__ == "__main__":
     parser.add_argument("--exp-name", type=str, default="main", help="Experiment file name")
     parser.add_argument("--num-samples", type=int, default=1, help="number of output samples for each prompt")
     parser.add_argument("--temperature", type=float, default=0.0, help="temperature for generation")
-    parser.add_argument("--prompt-type", type=str, default="python_stack_plus", help="type of adversarial prompt")
     parser.add_argument("--start-idx", type=int, default=0, help="start index of the data")
     parser.add_argument("--end-idx", type=int, default=-1, help="end index of the data")
     parser.add_argument("--query-files", nargs="+", default=["./data/jailbreakbench.csv", "./data/harmbench.csv"],

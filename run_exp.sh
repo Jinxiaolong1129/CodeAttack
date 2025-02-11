@@ -48,7 +48,6 @@ echo "Check logs directory for outputs."
 
 
 
-
 # nohup python main-API.py \
 #     --target-model "gpt-4o-mini" \
 #     --target-max-n-tokens 2048 \
@@ -60,12 +59,3 @@ echo "Check logs directory for outputs."
 #     > "logs/gpt4o_mini.log" 2>&1 &
 
 
-# nohup python main-API.py \
-#     --target-model "gpt-4o" \
-#     --target-max-n-tokens 2048 \
-#     --num-samples 1 \
-#     --max-workers 20 \
-#     --query-files "./data/jailbreakbench.csv" "./data/harmbench.csv" \
-#     --exp-name "exp_gpt4o_mini" \
-#     --temperature 0.0 \
-#     > "logs/gpt4o_mini.log" 2>&1 &

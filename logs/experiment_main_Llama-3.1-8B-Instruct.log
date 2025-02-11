@@ -1,0 +1,66 @@
+2025-02-11 13:50:58,233 - INFO - Starting experiments with configuration:
+2025-02-11 13:50:58,234 - INFO - Arguments: {'multi_thread': True, 'max_workers': 10, 'target_model': 'meta-llama/Llama-3.1-8B-Instruct', 'judge_model': 'gpt-4o-mini', 'target_max_n_tokens': 1000, 'exp_name': 'main', 'num_samples': 1, 'temperature': 0.0, 'prompt_type': 'python_list_plus', 'start_idx': 0, 'end_idx': 50, 'query_files': ['./data/jailbreakbench.csv'], 'prompt_types': None, 'no_attack': False}
+2025-02-11 13:51:28,207 - INFO - Starting experiments with configuration:
+2025-02-11 13:51:28,207 - INFO - Arguments: {'multi_thread': True, 'max_workers': 10, 'target_model': 'meta-llama/Llama-3.1-8B-Instruct', 'judge_model': 'gpt-4o-mini', 'target_max_n_tokens': 1000, 'exp_name': 'main', 'num_samples': 1, 'temperature': 0.0, 'prompt_type': 'python_stack_plus', 'start_idx': 0, 'end_idx': 50, 'query_files': ['./data/jailbreakbench.csv'], 'prompt_types': ['python_list_plus'], 'no_attack': False}
+2025-02-11 13:51:28,207 - INFO - 
+Starting experiments with prompt type: python_list_plus
+2025-02-11 13:51:28,207 - INFO - ====================================================================================================
+2025-02-11 13:51:28,207 - INFO - ====================================================================================================
+2025-02-11 13:51:28,207 - INFO - ====================================================================================================
+2025-02-11 13:51:28,207 - INFO - 
+Processing ./data/jailbreakbench.csv with python_list_plus
+2025-02-11 13:51:28,207 - INFO - ====================================================================================================
+2025-02-11 13:51:28,207 - INFO - ====================================================================================================
+2025-02-11 13:51:28,207 - INFO - ====================================================================================================
+2025-02-11 13:51:28,207 - INFO - Starting experiment for dataset: jailbreakbench
+2025-02-11 13:51:28,226 - INFO - Using single thread for meta-llama/Llama-3.1-8B-Instruct (vLLM model)
+2025-02-11 13:51:28,226 - INFO - Initializing model: meta-llama/Llama-3.1-8B-Instruct
+2025-02-11 13:51:28,226 - INFO - Using vLLM backend
+2025-02-11 13:52:34,727 - INFO - Starting experiments with configuration:
+2025-02-11 13:52:34,727 - INFO - Arguments: {'multi_thread': True, 'max_workers': 10, 'target_model': 'meta-llama/Llama-3.1-8B-Instruct', 'judge_model': 'gpt-4o-mini', 'target_max_n_tokens': 1000, 'exp_name': 'main', 'num_samples': 1, 'temperature': 0.0, 'prompt_type': 'python_stack_plus', 'start_idx': 0, 'end_idx': 50, 'query_files': ['./data/jailbreakbench.csv'], 'prompt_types': ['python_list_plus python_string_plus'], 'no_attack': False}
+2025-02-11 13:52:34,727 - INFO - 
+Starting experiments with prompt type: python_list_plus python_string_plus
+2025-02-11 13:52:34,727 - INFO - ====================================================================================================
+2025-02-11 13:52:34,727 - INFO - ====================================================================================================
+2025-02-11 13:52:34,727 - INFO - ====================================================================================================
+2025-02-11 13:52:34,727 - INFO - 
+Processing ./data/jailbreakbench.csv with python_list_plus python_string_plus
+2025-02-11 13:52:34,728 - INFO - ====================================================================================================
+2025-02-11 13:52:34,728 - INFO - ====================================================================================================
+2025-02-11 13:52:34,728 - INFO - ====================================================================================================
+2025-02-11 13:52:34,728 - INFO - Starting experiment for dataset: jailbreakbench
+2025-02-11 13:52:34,728 - ERROR - Error processing ./data/jailbreakbench.csv with python_list_plus python_string_plus: [Errno 2] No such file or directory: './prompt_templates/code_python_list_plus python_string_plus.txt'
+Traceback (most recent call last):
+  File "/home/jin509/jailbreak_zixuan/new_easyjailbreak/CodeAttack/main.py", line 268, in <module>
+    run_experiment(args, query_file, prompt_type)
+  File "/home/jin509/jailbreak_zixuan/new_easyjailbreak/CodeAttack/main.py", line 196, in run_experiment
+    data_preparer = DataPreparer(query_file=query_file,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jin509/jailbreak_zixuan/new_easyjailbreak/CodeAttack/data_preparation.py", line 11, in __init__
+    self._prompt = self.load(prompt_name)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jin509/jailbreak_zixuan/new_easyjailbreak/CodeAttack/data_preparation.py", line 17, in load
+    with open(filename, 'r') as file:
+         ^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './prompt_templates/code_python_list_plus python_string_plus.txt'
+2025-02-11 13:52:34,728 - INFO - All experiments completed successfully
+2025-02-11 13:53:25,049 - INFO - Starting experiments with configuration:
+2025-02-11 13:53:25,050 - INFO - Arguments: {'multi_thread': True, 'max_workers': 10, 'target_model': 'meta-llama/Llama-3.1-8B-Instruct', 'judge_model': 'gpt-4o-mini', 'target_max_n_tokens': 1000, 'exp_name': 'main', 'num_samples': 1, 'temperature': 0.0, 'start_idx': 0, 'end_idx': 50, 'query_files': ['./data/jailbreakbench.csv'], 'prompt_types': ['python_list_plus python_string_plus'], 'no_attack': False}
+2025-02-11 13:54:46,130 - INFO - Starting experiments with configuration:
+2025-02-11 13:54:46,130 - INFO - Arguments: {'multi_thread': True, 'max_workers': 10, 'target_model': 'meta-llama/Llama-3.1-8B-Instruct', 'judge_model': 'gpt-4o-mini', 'target_max_n_tokens': 1000, 'exp_name': 'main', 'num_samples': 1, 'temperature': 0.0, 'start_idx': 0, 'end_idx': 50, 'query_files': ['./data/jailbreakbench.csv ./data/harmbench.csv'], 'prompt_types': ['python_list_plus python_string_plus'], 'no_attack': False}
+2025-02-11 13:59:26,576 - INFO - Starting experiments with configuration:
+2025-02-11 13:59:26,576 - INFO - Arguments: {'multi_thread': True, 'max_workers': 10, 'target_model': 'meta-llama/Llama-3.1-8B-Instruct', 'judge_model': 'gpt-4o-mini', 'target_max_n_tokens': 1000, 'exp_name': 'main', 'num_samples': 1, 'temperature': 0.0, 'start_idx': 0, 'end_idx': 50, 'query_files': ['./data/jailbreakbench.csv', '/data/harmbench.csv'], 'prompt_types': ['python_list_plus', 'python_string_plus'], 'no_attack': False}
+2025-02-11 13:59:29,927 - INFO - 
+Starting experiments with prompt type: python_list_plus
+2025-02-11 13:59:30,421 - INFO - ====================================================================================================
+2025-02-11 13:59:30,880 - INFO - ====================================================================================================
+2025-02-11 13:59:31,277 - INFO - ====================================================================================================
+2025-02-11 13:59:34,017 - INFO - 
+Processing ./data/jailbreakbench.csv with python_list_plus
+2025-02-11 13:59:35,208 - INFO - ====================================================================================================
+2025-02-11 13:59:35,673 - INFO - ====================================================================================================
+2025-02-11 13:59:36,191 - INFO - ====================================================================================================
+2025-02-11 13:59:53,022 - INFO - Starting experiment for dataset: jailbreakbench
+2025-02-11 13:59:53,064 - INFO - Using single thread for meta-llama/Llama-3.1-8B-Instruct (vLLM model)
+2025-02-11 13:59:53,064 - INFO - Initializing model: meta-llama/Llama-3.1-8B-Instruct
+2025-02-11 13:59:53,064 - INFO - Using vLLM backend

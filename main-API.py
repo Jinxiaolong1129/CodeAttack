@@ -165,7 +165,8 @@ def process_data(args: Any, datas: list, results: list, data_key: str, dataset_n
     logging.info(f"Total successful jailbreaks: {total_jailbreaks}")
     logging.info(f"Overall success rate: {overall_success_rate:.2%}")
 
-def run_experiment(args: Any, query_file: str) -> None:
+def run_experiment(args: Any, query_file: str, prompt_type: str) -> None:
+    args.prompt_type = prompt_type
     """Run experiment for a single dataset"""
     dataset_name = Path(query_file).stem
     logging.info(f"Starting experiment for dataset: {dataset_name}")
@@ -206,35 +207,46 @@ if __name__ == "__main__":
     parser.add_argument("--exp-name", type=str, default="main", help="Experiment file name")
     parser.add_argument("--num-samples", type=int, default=1, help="number of output samples for each prompt")
     parser.add_argument("--temperature", type=float, default=0.0, help="temperature for generation")
-    parser.add_argument("--prompt-type", type=str, default="python_stack", help="type of adversarial prompt")
     parser.add_argument("--start-idx", type=int, default=0, help="start index of the data")
     parser.add_argument("--end-idx", type=int, default=-1, help="end index of the data")
     parser.add_argument("--max-workers", type=int, default=10, help="maximum number of worker threads")
+    parser.add_argument("--no-attack", action="store_true", help="set true when only generating adversarial examples")
+    
+    parser.add_argument("--prompt-types", nargs="+", 
+                    default=None,
+                    help="List of prompt types to evaluate")
     parser.add_argument("--query-files", nargs="+", default=["./data/jailbreakbench.csv", "./data/harmbench.csv"],
                       help="List of query files to process")
-    parser.add_argument("--no-attack", action="store_true", help="set true when only generating adversarial examples")
 
     args = parser.parse_args()
     
     # Setup logging
-    log_file = setup_logging(args.exp_name)
+    base_exp_name = args.exp_name
+    log_file = setup_logging(f"{base_exp_name}_{args.target_model.split('/')[-1]}")
+    
     logging.info(f"Starting experiments with configuration:")
     logging.info(f"Arguments: {vars(args)}")
     
-    # Process each dataset
-    for query_file in args.query_files:
-        logging.info(f"Processing dataset: {query_file}")
-        logging.info(f"Log file: {log_file}")
-        logging.info(f"Start index: {args.start_idx}")
-        logging.info(f"End index: {args.end_idx}")
-        logging.info('=' * 100)
-        logging.info('=' * 100)
-        logging.info('=' * 100)
-        logging.info('=' * 100)
-        try:
-            run_experiment(args, query_file)
-        except Exception as e:
-            logging.error(f"Error processing {query_file}: {str(e)}", exc_info=True)
-            continue
-
+    # Nested loop for prompt types and query files
+    for prompt_type in args.prompt_types:
+        logging.info(f"\nStarting experiments with prompt type: {prompt_type}")
+        logging.info(f'='*100)
+        logging.info(f'='*100)
+        logging.info(f'='*100)
+        # Update experiment name to include prompt type
+        current_exp_name = f"{base_exp_name}_{prompt_type}"
+        args.exp_name = current_exp_name
+        
+        for query_file in args.query_files:
+            logging.info(f"\nProcessing {query_file} with {prompt_type}")
+            logging.info(f'='*100)
+            logging.info(f'='*100)
+            logging.info(f'='*100)
+            try:
+                run_experiment(args, query_file, prompt_type)
+            except Exception as e:
+                logging.error(f"Error processing {query_file} with {prompt_type}: {str(e)}", 
+                            exc_info=True)
+                continue
+    
     logging.info("All experiments completed successfully")
